@@ -1,12 +1,4 @@
 `timescale 1ns / 1ps
-//------------------------------------------------------------------------
-// tb_uart_loopback.v
-//
-// Self-checking testbench for uart_loopback: drives tx_data/tx_start_n,
-// waits for the byte to come back out on rx_data, and checks it matches
-// with no frame_error. Dumps a VCD for GTKWave.
-//------------------------------------------------------------------------
-
 module tb_uart_loopback;
 
     reg clk;
@@ -24,10 +16,6 @@ module tb_uart_loopback;
     integer errors;
     integer i;
 
-    // ---- DUT instantiation --------------------------------------------
-    // IMPORTANT: edit this port map to match your uart_loopback.v exactly.
-    // Open rtl/uart_loopback.v and copy its "module uart_loopback ( ... )"
-    // header, then map each signal below to your real port names.
     uart_loopback dut (
         .clk         (clk),
         .rst_n       (rst_n),
@@ -41,7 +29,6 @@ module tb_uart_loopback;
         .frame_error (frame_error)
     );
 
-    // 50 MHz clock (20 ns period)
     initial clk = 1'b0;
     always #10 clk = ~clk;
 
